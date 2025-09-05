@@ -99,7 +99,6 @@ body.theme-dark {
 /* 设置外部链接样式 */
 .markdown-source-view.mod-cm6 .cm-url {
 	font-family: var(--font-monospace);
-	text-decoration-line: none;
 }
 
 .markdown-source-view.mod-cm6 .cm-url .cm-underline {
@@ -112,7 +111,6 @@ body.theme-dark {
 
 .markdown-source-view .cm-url .cm-underline {
 	font-family: var(--font-monospace);
-	text-decoration: none;
 	position: relative;
 	display: inline-block;
 
