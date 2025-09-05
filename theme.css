@@ -111,17 +111,39 @@ body.theme-dark {
 }
 
 .markdown-source-view .cm-url .cm-underline {
-	color: var(--accent-color);
 	font-family: var(--font-monospace);
 	text-decoration: none !important;
 	position: relative;
 	display: inline-block;
-	/* 使用背景渐变实现滑动下划线 */
-	background-image: linear-gradient(var(--accent-color), var(--accent-color));
-	background-size: 0% 1px;
-	background-position: left bottom;
-	background-repeat: no-repeat;
-	transition: background-size 0.22s cubic-bezier(0.3, 0.86, 0.43, 0.99);
+
+	/* 双色渐变：强调色到默认文字色 */
+	background: linear-gradient(
+		90deg,
+		var(--accent-color) 0%,
+		/* 悬停时的强调色 */ var(--accent-color) 50%,
+		var(--text-normal) 50%,
+		/* 默认的文字颜色 */ var(--text-normal) 100%
+	);
+	background-size: 200% 100%;
+	background-position: 100% 0; /* 初始显示右半部分(默认文字色) */
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	transition: background-position 0.22s cubic-bezier(0.3, 0.86, 0.43, 0.99);
+}
+
+/* 下划线效果 */
+.markdown-source-view .cm-url .cm-underline::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 1px;
+	background: var(--accent-color);
+	transform: scaleX(0);
+	transform-origin: left center;
+	transition: transform 0.22s cubic-bezier(0.3, 0.86, 0.43, 0.99);
 }
 
 /* 左侧横线标记 */
@@ -130,22 +152,27 @@ body.theme-dark {
 	position: absolute;
 	left: 0;
 	bottom: 0;
-	width: 4px; /* 小横线的初始宽度 */
+	width: 4px;
 	height: 1px;
-	background: var(--accent-color);
+	background: var(--text-normal); /* 默认使用文字颜色 */
 	opacity: 0.6;
 	transition: all 0.22s cubic-bezier(0.3, 0.86, 0.43, 0.99);
+	z-index: 1;
 }
 
 /* 悬停效果 */
 .markdown-source-view .cm-url:hover .cm-underline {
-	background-size: 100% 1px;
+	background-position: 0% 0; /* 移动到左半部分(强调色) */
 }
 
-/* 悬停时左侧横线稍微延长并变淡（避免与主线重叠） */
+.markdown-source-view .cm-url:hover .cm-underline::after {
+	transform: scaleX(1);
+}
+
 .markdown-source-view .cm-url:hover .cm-underline::before {
 	width: 8px;
 	opacity: 0.3;
+	background: var(--accent-color); /* 跟随变为强调色 */
 }
 
 .markdown-source-view.mod-cm6 .cm-link .cm-underline:hover,
