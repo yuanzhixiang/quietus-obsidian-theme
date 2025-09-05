@@ -92,7 +92,7 @@ body.theme-dark {
 
 .markdown-source-view.mod-cm6 .cm-hmd-internal-link:hover,
 .markdown-source-view.mod-cm6 .cm-hmd-internal-link .cm-underline:hover {
-	text-decoration: none !important;
+	text-decoration: none;
 	background: linear-gradient(transparent 50%, var(--text-highlight-bg) 50%);
 }
 
@@ -112,7 +112,7 @@ body.theme-dark {
 
 .markdown-source-view .cm-url .cm-underline {
 	font-family: var(--font-monospace);
-	text-decoration: none !important;
+	text-decoration: none;
 	position: relative;
 	display: inline-block;
 
