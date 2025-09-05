@@ -110,6 +110,44 @@ body.theme-dark {
 	text-decoration-line: none;
 }
 
+.markdown-source-view .cm-url .cm-underline {
+	color: var(--accent-color);
+	font-family: var(--font-monospace);
+	text-decoration: none !important;
+	position: relative;
+	display: inline-block;
+	/* 使用背景渐变实现滑动下划线 */
+	background-image: linear-gradient(var(--accent-color), var(--accent-color));
+	background-size: 0% 1px;
+	background-position: left bottom;
+	background-repeat: no-repeat;
+	transition: background-size 0.22s cubic-bezier(0.3, 0.86, 0.43, 0.99);
+}
+
+/* 左侧横线标记 */
+.markdown-source-view .cm-url .cm-underline::before {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: 0;
+	width: 4px; /* 小横线的初始宽度 */
+	height: 1px;
+	background: var(--accent-color);
+	opacity: 0.6;
+	transition: all 0.22s cubic-bezier(0.3, 0.86, 0.43, 0.99);
+}
+
+/* 悬停效果 */
+.markdown-source-view .cm-url:hover .cm-underline {
+	background-size: 100% 1px;
+}
+
+/* 悬停时左侧横线稍微延长并变淡（避免与主线重叠） */
+.markdown-source-view .cm-url:hover .cm-underline::before {
+	width: 8px;
+	opacity: 0.3;
+}
+
 .markdown-source-view.mod-cm6 .cm-link .cm-underline:hover,
 .markdown-source-view.mod-cm6 .cm-url .cm-underline:hover {
 	color: var(--accent-color);
