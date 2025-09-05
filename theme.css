@@ -106,9 +106,14 @@ body.theme-dark {
 	text-decoration-line: none;
 }
 
+.markdown-source-view.mod-cm6 .cm-url:hover {
+	text-decoration-line: none;
+}
+
 .markdown-source-view.mod-cm6 .cm-link .cm-underline:hover,
 .markdown-source-view.mod-cm6 .cm-url .cm-underline:hover {
 	color: var(--accent-color);
+	text-decoration-line: none;
 }
 
 .markdown-source-view.mod-cm6 .cm-strong {
